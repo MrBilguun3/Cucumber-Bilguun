@@ -14,6 +14,7 @@ import java.util.List;
 
 public class PageNavigationStepDefs {
     DashboardPage dashboardPage = new DashboardPage();
+    UsersPage usersPage = new UsersPage();
 
     @When("I click on {string} link")
     public void i_click_on_link(String link) {
@@ -50,7 +51,6 @@ public class PageNavigationStepDefs {
     @Then("show records default value should be {int}")
     public void show_records_default_value_should_be(Integer selected) {
         System.out.println("selected = "+selected);
-        UsersPage usersPage = new UsersPage();
         String actual = usersPage.getShowRecords().getFirstSelectedOption().getText();
         Assert.assertEquals(actual, selected.toString());
     }
@@ -59,6 +59,9 @@ public class PageNavigationStepDefs {
     public void show_records_should_have_following_options(List<String> options) {
         System.out.println("Size = "+ options.size());
         System.out.println(options.toString());
+        List<WebElement> webElements = usersPage.getShowRecords().getOptions();
+        List<String> elementsText = BrowserUtils.getElementsText(webElements);
+        Assert.assertEquals(options, elementsText);
     }
 
 }
