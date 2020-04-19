@@ -21,8 +21,7 @@ Feature: Page navigation links
     When I click on "Dashboard" link
     Then "Dashboard" page should be displayed
 
-
-    # login as librarian
+  # login as librarian
   # click on the users link
   # verify page Users
 

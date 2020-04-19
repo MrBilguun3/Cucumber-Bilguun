@@ -18,7 +18,7 @@ public class PageNavigationStepDefs {
 
     @When("I click on {string} link")
     public void i_click_on_link(String link) {
-        BrowserUtils.wait(5);
+        BrowserUtils.wait(1);
         switch (link.toLowerCase()){
             case "dashboard" :
                 dashboardPage.dashboard.click();
@@ -62,6 +62,20 @@ public class PageNavigationStepDefs {
         List<WebElement> webElements = usersPage.getShowRecords().getOptions();
         List<String> elementsText = BrowserUtils.getElementsText(webElements);
         Assert.assertEquals(options, elementsText);
+    }
+
+    @When("I select Show {int} records")
+    public void i_select_Show_records(Integer option) {
+       usersPage.getShowRecords().selectByVisibleText(option.toString());
+
+    }
+
+    @Then("the users table must display {int} records")
+    public void the_users_table_must_display_records(int expectedCount) {
+        BrowserUtils.wait(1);
+        int actualCount = usersPage.allRows.size();
+        Assert.assertEquals(expectedCount, actualCount);
+
     }
 
 }
