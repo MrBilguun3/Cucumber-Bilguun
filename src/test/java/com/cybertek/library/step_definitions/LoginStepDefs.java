@@ -13,6 +13,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginStepDefs {
     LoginPage loginPage = new LoginPage();
+    String email;
+    String password;
 
     @Given("I am on the login page")
     public void i_am_on_the_login_page() {
@@ -27,8 +29,8 @@ public class LoginStepDefs {
     @When("I login as a librarian")
     public void i_login_as_a_librarian() {
         System.out.println("Logging in as a librarian");
-        String email = ConfigurationReader.getProperty("librarian_email");
-        String password = ConfigurationReader.getProperty("librarian_password");
+        email = ConfigurationReader.getProperty("librarian_email");
+        password = ConfigurationReader.getProperty("librarian_password");
         loginPage.login(email, password);
     }
 
@@ -44,6 +46,10 @@ public class LoginStepDefs {
     @When("I login as a student")
     public void i_login_as_a_student() {
         System.out.println("Logging in as a student");
+        email = ConfigurationReader.getProperty("student_email");
+        password = ConfigurationReader.getProperty("student_password");
+        loginPage.login(email, password);
+
     }
 
     @When("I login as an admin")

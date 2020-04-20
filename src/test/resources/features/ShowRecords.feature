@@ -17,7 +17,6 @@ Feature: Show records dropdown functionality
     | 200 |
     | 500 |
 
-  @wip
   Scenario: Change number of rows in Users page
     And I click on "Users" link
     When I select Show 50 records
