@@ -1,19 +1,13 @@
 package com.cybertek.library.utilities;
 
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-
 import com.google.common.base.Function;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.ui.*;
-
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.*;
 
@@ -63,6 +57,16 @@ public class BrowserUtils {
         }
         return elemTexts;
     }
+
+    public static Set<String> getElementsSet(List<WebElement> list) {
+        Set<String> elemTexts = new HashSet<>();
+        for (WebElement el : list) {
+            elemTexts.add(el.getText());
+        }
+        return elemTexts;
+    }
+
+
 
     public static List<String> getElementsText(By locator) {
 

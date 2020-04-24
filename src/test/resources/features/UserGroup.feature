@@ -5,11 +5,12 @@ Feature: User group dropdown functionality
     Given I access Users page as a librarian
 
   Scenario: User group default values User Management
-    Then User group default value should be "All"
-    And show records should have following options:
+    Then User group default value should be "ALL"
+    And show user group records should have following options:
       | ALL       |
       | Librarian |
       | Students  |
+
 
   Scenario: User group Librarian User Management
     When I select User group "Librarian"

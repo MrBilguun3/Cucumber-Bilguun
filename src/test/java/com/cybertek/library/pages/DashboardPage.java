@@ -28,4 +28,7 @@ public class DashboardPage extends PageBase{
     @FindBy(xpath = "(//h6[@class='text-muted'])[3]")
     public WebElement borrowedBooksText;
 
+    @FindBy(css = "#navbarDropdown>span")
+    public WebElement accountHolderName;
+
 }

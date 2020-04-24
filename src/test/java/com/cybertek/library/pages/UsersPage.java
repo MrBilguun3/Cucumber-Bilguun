@@ -1,15 +1,27 @@
 package com.cybertek.library.pages;
 
-import io.cucumber.java.eo.Se;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class UsersPage extends PageBase{
+
+    @FindBy(id = "user_groups")
+    public WebElement defaultValue;
+
+    public Select getDefaultValue(){
+        return new Select(defaultValue);
+    }
+
+    @FindBy(id = "user_groups")
+    public WebElement option;
+
+    public Select getAllOptions(){
+        return new Select(option);
+    }
+
     @FindBy(name = "tbl_users_length")
     public WebElement showRecords;
 
@@ -21,28 +33,10 @@ public class UsersPage extends PageBase{
     }
 
     @FindBy(xpath = "//a[@href='tpl/add-user.html']")
-    public WebElement addUser;
-
-    @FindBy(name = "start_date")
-    public WebElement todaysDate;
-
-    @FindBy(name = "end_date")
-    public WebElement monthLaterDate;
-
-    @FindBy(name = "full_name")
-    public WebElement fullName;
-
-    @FindBy(name = "password")
-    public WebElement password;
-
-    @FindBy(name = "email")
-    public WebElement email;
+    public WebElement addUsers;
 
     @FindBy(xpath = "//table/tbody//td[4]")
     public WebElement emailResult;
-
-    @FindBy(xpath = "//button[@class='btn default']")
-    public WebElement closeButton;
 
     @FindBy(xpath = "//table/tbody//td[2]")
     public List<WebElement> allUserIDs;
@@ -53,31 +47,22 @@ public class UsersPage extends PageBase{
     @FindBy(xpath = "//table/tbody//td[4]")
     public List<WebElement> allEmails;
 
-    @FindBy(xpath = "//button[.='Save changes']")
-    public WebElement saveButton;
-
     @FindBy(xpath = "//input")
     public WebElement searchField;
 
     @FindBy(tagName = "th")
     public List<WebElement> columnNames;
 
+    @FindBy(xpath = "//td[5]")
+    public List<WebElement> groupColumns;
+
+    @FindBy(className = "dataTables_empty")
+    public WebElement message;
+
     @FindBy(className = "sorting_desc")
-    public WebElement userIDButton;
+    public WebElement userID;
 
-    public String getExpectedEndDate(String datePattern, int addMonths){
-        LocalDate futureDate = LocalDate.now().plusMonths(addMonths);
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern(datePattern);
-        return dtf.format(futureDate);
-    }
-    public String getActualStartDate(){
-        String actualStartDate = todaysDate.getAttribute("value");
-        return actualStartDate;
-    }
-    public String getActualEndDate(){
-        String actualEndDate = monthLaterDate.getAttribute("value");
-        return actualEndDate;
-    }
-
+    @FindBy(linkText = "Email")
+    public WebElement emailButton;
 
 }

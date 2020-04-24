@@ -8,7 +8,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
@@ -51,6 +50,8 @@ public class PageNavigationStepDefs {
     @Then("show records default value should be {int}")
     public void show_records_default_value_should_be(Integer selected) {
         System.out.println("selected = "+selected);
+        String select = selected.toString();
+        usersPage.getShowRecords().selectByVisibleText(select);
         String actual = usersPage.getShowRecords().getFirstSelectedOption().getText();
         Assert.assertEquals(actual, selected.toString());
     }

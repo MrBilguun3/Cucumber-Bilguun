@@ -7,7 +7,10 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -48,6 +51,46 @@ public class UsersTableStepDefs {
         List<String> actualColumnNames = BrowserUtils.getElementsText(usersPage.columnNames);
         assertEquals(expectedColumnNames, actualColumnNames);
     }
+
+    @Then("table should contain this data")
+    public void table_should_contain_this_data(Map<String, String> user) {
+        System.out.println(user.entrySet());
+
+        String name = user.get("Full Name");
+        String email = user.get("Email");
+        String userID = user.get("User ID");
+
+        System.out.println(name+"\n"+email+"\n"+userID);
+        //get all rows. verify that at least one of the rows contains all of the user info
+        List<WebElement> allRows = usersPage.allRows;
+        List<String> allRowsText = BrowserUtils.getElementsText(allRows);
+
+        boolean found = false;
+        for (String row : allRowsText){
+            System.out.println("row = "+row);
+            found = row.contains(userID) && row.contains(name) && row.contains(email);
+            if(found){
+                break;
+            }
+        }
+        Assert.assertTrue(found);
+    }
+
+    @Then("Each user id must be unique")
+    public void each_user_id_must_be_unique() {
+        int optionsSize = usersPage.getShowRecords().getOptions().size()-1;
+        usersPage.getShowRecords().selectByIndex(optionsSize);
+        BrowserUtils.wait(1);
+
+        List<String> list = BrowserUtils.getElementsText(usersPage.allUserIDs);
+        System.out.println(list);
+
+        Set<String> set = new HashSet<>();
+        set.addAll(list);
+
+        assertEquals(list.size(), set.size());
+    }
+
 
 
 }
