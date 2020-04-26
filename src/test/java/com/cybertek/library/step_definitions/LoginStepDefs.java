@@ -41,7 +41,7 @@ public class LoginStepDefs {
     public void dashboard_should_be_displayed() {
         System.out.println("Verifying dashboard page");
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 5);
-        wait.until(ExpectedConditions.urlContains("dashboard"));
+       // wait.until(ExpectedConditions.urlContains("dashboard"));
         String actualTitle = Driver.getDriver().getCurrentUrl();
         Assert.assertTrue(actualTitle.endsWith("dashboard"));
     }

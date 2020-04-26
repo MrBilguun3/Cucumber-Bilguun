@@ -13,7 +13,7 @@ Feature: Add Users window
     And I enter new user information with random email
     When I click the Close link
     Then the users table should not contain user with that email
-
+  @regres
   Scenario: Save new user
     When I save new user information with random email
     When the users table must contain the correct user information

@@ -14,7 +14,7 @@ Feature: Login
     When I login as a student
     Then dashboard should be displayed
 
-  @admin @staff
+  @admin
   Scenario: Login as a admin
     Given I am on the login page
     When I login as an admin
