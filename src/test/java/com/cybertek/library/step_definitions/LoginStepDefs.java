@@ -4,11 +4,11 @@ import com.cybertek.library.pages.AddUsersPage;
 import com.cybertek.library.pages.LoginPage;
 import com.cybertek.library.utilities.ConfigurationReader;
 import com.cybertek.library.utilities.Driver;
+import com.cybertek.library.utilities.LibraryConstants;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Map;
@@ -92,4 +92,25 @@ public class LoginStepDefs {
         String actualAddressField = addUsersPage.address.getAttribute("placeholder");
         Assert.assertTrue(actualAddressField.isEmpty());
     }
+
+    @Given("I login to application as a {word}")
+    public void i_login_to_application_as_a_librarian(String user) throws Exception {
+        String email = null, password = null;
+        switch (user.toLowerCase()){
+            case LibraryConstants.LIBRARIAN :
+                email = ConfigurationReader.getProperty("librarian_email");
+                password = ConfigurationReader.getProperty("librarian_password");
+                break;
+            case LibraryConstants.STUDENT :
+                email = ConfigurationReader.getProperty("student_email");
+                password = ConfigurationReader.getProperty("student_password");
+                break;
+            default:
+                throw new Exception("Wrong user type is provided: "+user);
+        }
+        loginPage.login(email, password);
+    }
+
+
+
 }

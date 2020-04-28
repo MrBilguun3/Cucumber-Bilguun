@@ -11,7 +11,7 @@ Feature: User table search and sort
   Scenario: Search by invalid email
     When I search for any invalid email
     Then the users table must display message "No data available in table"
-  @wip
+
   Scenario: default sort User Management
     Then users table should be sorted by "User ID" in "ascending" order
     When I click on the "User ID" column
