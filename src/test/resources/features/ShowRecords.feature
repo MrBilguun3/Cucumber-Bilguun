@@ -32,8 +32,8 @@ Feature: Show records dropdown functionality
 
     Examples:
       | count |
-      | 5     |
-      | 10    |
-      | 15    |
-      | 50    |
-      | 100   |
+      | 4     |
+#      | 10    |
+#      | 15    |
+#      | 50    |
+#      | 100   |
